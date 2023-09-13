@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
+const DB = require("../common/constants/dataBase.js");
 
 const connectDb = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://dskiparis:VrMJx3R0zaWbq2jk@cluster0.jcad8kj.mongodb.net/api"
-    );
+    await mongoose.connect(DB.MONGO_DB_URL);
     console.log("Connected to MongoDB");
   } catch (error) {
     console.error(error);

@@ -1,11 +1,11 @@
 const https = require("https");
-const User = require("../../models/user.Model.js");
+const DB = require("../constants/dataBase.js");
 
 // Funkcija gauti vartotojus is JSON
 function getOldUsers() {
   return new Promise((resolve, reject) => {
     https
-      .get("https://jsonplaceholder.typicode.com/users", (response) => {
+      .get(DB.JSON_DB_URL, (response) => {
         let data = "";
 
         response.on("data", (section) => {
@@ -46,4 +46,4 @@ async function getAndFormatOldUsers() {
   }
 }
 
-module.exports = { getAndFormatOldUsers };
+module.exports = getAndFormatOldUsers;

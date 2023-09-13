@@ -1,13 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user.Model.js");
-const { mergeUsersData } = require("../common/utils/getMergedUsers.js");
-
-function auth(req, res, next) {
-  console.log("auth middleware");
-  next();
-  console.log("auth middleware end");
-}
+const mergeUsersData = require("../common/utils/getMergedUsers.js");
+const auth = require("../common/middleware/authMiddleware.js");
 
 // GET - Gauti visus senus ir naujus vartotojus
 router.get("/", auth, async (_, res) => {
@@ -20,7 +15,7 @@ router.get("/", auth, async (_, res) => {
 });
 
 // GET - Gauti vartotoju vardus
-router.get("/names", async (_, res) => {
+router.get("/names", auth, async (_, res) => {
   try {
     const mergedUsers = await mergeUsersData();
     const formattedUsers = mergedUsers.map((user) => ({
@@ -35,7 +30,7 @@ router.get("/names", async (_, res) => {
 });
 
 // GET - Gauti vartotoju vardus ir emailus
-router.get("/emails", async (_, res) => {
+router.get("/emails", auth, async (_, res) => {
   try {
     const mergedUsers = await mergeUsersData();
     const formattedUsers = mergedUsers.map((user) => ({
@@ -51,7 +46,7 @@ router.get("/emails", async (_, res) => {
 });
 
 // GET - Gauti vartotoju vardus ir adresus
-router.get("/address", async (_, res) => {
+router.get("/address", auth, async (_, res) => {
   try {
     const mergedUsers = await mergeUsersData();
     const formattedUsers = mergedUsers.map((user) => ({
@@ -67,7 +62,7 @@ router.get("/address", async (_, res) => {
 });
 
 // POST - Ikelti i DB naują vartotoja
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   try {
     const { name, email, street, city } = req.body;
     const address = `${street}, ${city}`;
@@ -80,7 +75,7 @@ router.post("/", async (req, res) => {
 });
 
 // GET - Gauti visus naujus vartotojus
-router.get("/new", async (_, res) => {
+router.get("/new", auth, async (_, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);

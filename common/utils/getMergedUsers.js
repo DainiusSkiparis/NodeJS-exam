@@ -1,4 +1,4 @@
-const { getAndFormatOldUsers } = require("./getFormatedOldUsers");
+const getAndFormatOldUsers = require("./getFormatedOldUsers");
 const User = require("../../models/user.Model.js");
 
 // Funkcija sujungti senus ir naujus vartotojus
@@ -16,6 +16,4 @@ async function mergeUsersData() {
   }
 }
 
-module.exports = {
-  mergeUsersData,
-};
+module.exports = mergeUsersData;
