@@ -1,4 +1,4 @@
-const getAndFormatOldUsers = require("./getFormatedOldUsers");
+const getAndFormatOldUsers = require("./getFormatedOldUsers.js");
 const User = require("../../models/user.Model.js");
 
 // Funkcija sujungti senus ir naujus vartotojus

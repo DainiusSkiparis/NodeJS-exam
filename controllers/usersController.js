@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/user.Model.js");
 const mergeUsersData = require("../common/utils/getMergedUsers.js");
+const getAndFormatOldUsers = require("../common/utils/getFormatedOldUsers.js");
 const auth = require("../common/middleware/authMiddleware.js");
 
 // GET - Gauti visus senus ir naujus vartotojus
@@ -79,6 +80,16 @@ router.get("/new", auth, async (_, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// GET - Gauti visus senus vartotojus
+router.get("/old", auth, async (_, res) => {
+  try {
+    const FormatOldUsers = await getAndFormatOldUsers();
+    res.status(200).json(FormatOldUsers);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

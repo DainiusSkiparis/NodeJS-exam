@@ -1,27 +1,19 @@
-const https = require("https");
 const DB = require("../constants/dataBase.js");
 
 // Funkcija gauti vartotojus is JSON
-function getOldUsers() {
-  return new Promise((resolve, reject) => {
-    https
-      .get(DB.JSON_DB_URL, (response) => {
-        let data = "";
+async function getOldUsers() {
+  try {
+    const response = await fetch(DB.JSON_DB_URL);
 
-        response.on("data", (section) => {
-          data += section;
-        });
+    if (!response.ok) {
+      throw new Error(`HTTP Error! Status: ${response.status}`);
+    }
 
-        response.on("end", () => {
-          const oldUsers = JSON.parse(data);
-          resolve(oldUsers);
-        });
-      })
-      .on("error", (error) => {
-        console.error("Error:", error);
-        reject(error);
-      });
-  });
+    const oldUser = await response.json();
+    return oldUser;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 }
 
 // Funkcija senus vartotojus pakeisti i norima formata

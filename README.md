@@ -43,10 +43,11 @@ Norėdami paleisti ir išbandyti šį projektą, galite naudoti Postman, įimpor
 
 1. **Add new user** - Sukuria naują vartotoją naudodama POST užklausą į `/api/users`. Kad galėtumėte pritaikyti šį testą, galite pakeisti JSON duomenis pagal savo poreikius.
 2. **All users** - Gauna visus vartotojus naudodama GET užklausą į `/api/users`.
-3. **New users** - Gauna naujus vartotojus naudodama GET užklausą į `/api/users/new`.
-4. **Users names** - Gauna vartotojų vardus naudodama GET užklausą į `/api/users/names`.
-5. **Users emails** - Gauna vartotojų el. paštus naudodama GET užklausą į `/api/users/emails`.
-6. **Users address** - Gauna vartotojų adresus naudodama GET užklausą į `/api/users/address`.
+3. **Users names** - Gauna vartotojų vardus naudodama GET užklausą į `/api/users/names`.
+4. **Users emails** - Gauna vartotojų el. paštus naudodama GET užklausą į `/api/users/emails`.
+5. **Users address** - Gauna vartotojų adresus naudodama GET užklausą į `/api/users/address`.
+6. **New users** - Gauna naujus vartotojus naudodama GET užklausą į `/api/users/new`.
+7. **Old users** - Gauna naujus vartotojus naudodama GET užklausą į `/api/users/old`.
 
 Prieš naudodami Postman testus, užtikrinkite, kad serveris yra paleistas ir pasiekiamas adresu `http://localhost:3000`.
 
